@@ -6,8 +6,13 @@ use day01::*;
 mod day01;
 
 fn main() -> Result<(), std::io::Error> {
-    let input = read_input("input/day01")?;
-    println!("Day 01, Part 1: {}", day01a(input));
+    let first_env_argument = std::env::args_os().nth(1).unwrap();
+    let problem_to_solve = first_env_argument.to_str().unwrap();
+    match problem_to_solve {
+        "day01a" => println!("{}", day01a(read_input("input/day01")?)),
+        "day01b" => println!("{}", day01b(read_input("input/day01")?)),
+        p => println!("Problem not found : {}", p),
+    }
     Ok(())
 }
 
